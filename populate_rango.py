@@ -15,7 +15,7 @@ def populate():
 
     python_pages = [
         {'title': 'Official Python Tutorial',
-        'url':'http://docs.python.org/3/tutorial/'},
+        'url':'http://docs.python.org/3/tutorial/',},
         {'title':'How to Think like a Computer Scientist',
         'url':'http://www.greenteapress.com/thinkpython/'},
         {'title':'Learn Python in 10 Minutes',
@@ -61,7 +61,16 @@ def add_page(cat, title, url, views=0):
     return p
 
 def add_cat(name):
-    c = Category.objects.get_or_create(name=name)[0]
+    if name == 'Python':
+        likes = 64
+        views = 128
+    elif name == 'Django':
+        likes = 32
+        views = 64
+    elif name == 'Other Frameworks':
+        likes = 16
+        views = 32
+    c = Category.objects.get_or_create(name=name, likes = likes, views = views)[0]
     c.save()
     return c
 
